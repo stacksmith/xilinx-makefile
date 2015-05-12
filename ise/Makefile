@@ -1,4 +1,4 @@
-# Don't forget to source the Xilinx settings file
+# Don't forget to source the 
 #
 DEVICE = xc3s200-FT256-4
 BOARD = DigilentS3
@@ -9,7 +9,8 @@ top.ngc: ../src/top.v ../board/$(BOARD)/top.ucf ../src/top.prj
 	xst -intstyle silent  -ifn ../board/$(BOARD)/top.xst 
 #-----------------------------------------------------------------------------
 top.ngd: top.ngc
-	ngdbuild -intstyle silent -dd _ngo -nt off -uc ../board/$(BOARD)/top.ucf -p $(DEVICE) top.ngc top
+	ngdbuild -intstyle silent -dd _ngo -nt off -uc \
+		../board/$(BOARD)/top.ucf -p $(DEVICE) top.ngc top
 #-----------------------------------------------------------------------------
 top.pcf: top.ngd top.ngc
 	map  -p $(DEVICE) -timing -logic_opt off   \
@@ -20,13 +21,7 @@ top.ncd: top.ngd top.ngc top.pcf top_map.ncd
 	par -intstyle silent -w  -ol high -t 1 top_map.ncd top.ncd top.pcf
 #-----------------------------------------------------------------------------
 top.bit: top.ncd
-	bitgen -intstyle silent -w -g DebugBitstream:No -g Binary:no -g CRC:Enable -g ConfigRate:6 \
-	-g CclkPin:PullUp \
-	-g DonePin:PullUp  -g TckPin:PullUp -g TdiPin:PullUp -g TdoPin:PullUp \
-	-g TmsPin:PullUp -g UnusedPin:PullDown -g UserID:0xFFFFFFFF \
-	-g StartUpClk:CClk -g DONE_cycle:4 -g GTS_cycle:5 \
-	-g GWE_cycle:6 -g LCK_cycle:NoWait  -g Security:None -g DonePipe:No \
-	-g DriveDone:No top.ncd
+	bitgen -intstyle silent -f ../board/$(BOARD)/top.ut
 #-----------------------------------------------------------------------------
 burn:	top.bit 
 	impact -batch ../board/$(BOARD)/impact.cmd

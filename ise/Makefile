@@ -1,5 +1,3 @@
-# Don't forget to source the 
-#
 DEVICE = xc3s200-FT256-4
 BOARD = DigilentS3
 
@@ -21,7 +19,7 @@ top.ncd: top.ngd top.ngc top.pcf top_map.ncd
 	par -intstyle silent -w  -ol high -t 1 top_map.ncd top.ncd top.pcf
 #-----------------------------------------------------------------------------
 top.bit: top.ncd
-	bitgen -intstyle silent -f ../board/$(BOARD)/top.ut
+	bitgen -intstyle silent -f ../board/$(BOARD)/top.ut top.ncd top.bit
 #-----------------------------------------------------------------------------
 burn:	top.bit 
 	impact -batch ../board/$(BOARD)/impact.cmd

@@ -3,4 +3,5 @@
 #
 NET "led"  LOC = K12  | IOSTANDARD = LVCMOS33 ;
 NET "clk"  LOC = T9  | IOSTANDARD = LVCMOS33 ;  #50MHz
-  
+
+NET "clk"  PERIOD = 12 MHz; 

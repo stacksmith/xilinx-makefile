@@ -1,5 +1,7 @@
-DEVICE = xc3s200-FT256-4
-BOARD = DigilentS3
+DEVICE = xc6slx9-2-ftg256 #XuLA2 lx9  
+BOARD = xula2
+#DEVICE = xc3s200-FT256-4
+#BOARD = DigilentS3
 
 default: burn
 #-----------------------------------------------------------------------------
@@ -11,12 +13,11 @@ top.ngd: top.ngc
 		../board/$(BOARD)/top.ucf -p $(DEVICE) top.ngc top
 #-----------------------------------------------------------------------------
 top.pcf: top.ngd top.ngc
-	map  -p $(DEVICE) -timing -logic_opt off   \
-	-ol high -t 1 -register_duplication off -cm area -detail -ir off -pr b \
-	-power off -o top_map.ncd top.ngd top.pcf 
+	map -intstyle silent -p $(DEVICE) -ir off -pr b -detail \
+	-ol std -logic_opt off -c 100 -o top_map.ncd top.ngd top.pcf
 #-----------------------------------------------------------------------------
 top.ncd: top.ngd top.ngc top.pcf top_map.ncd
-	par -intstyle silent -w  -ol high -t 1 top_map.ncd top.ncd top.pcf
+	par -intstyle silent -w  -ol high top_map.ncd top.ncd top.pcf
 #-----------------------------------------------------------------------------
 top.bit: top.ncd
 	bitgen -intstyle silent -f ../board/$(BOARD)/top.ut top.ncd top.bit

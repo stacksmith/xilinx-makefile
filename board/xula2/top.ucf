@@ -1,0 +1,7 @@
+#
+# xula2
+#
+NET "clk" LOC=A9 ;    # 12 MHz clock input.
+NET "led" LOC=T7 | IOSTANDARD=LVTTL | DRIVE=24 | SLEW=SLOW ;  # Blinker output to LED.
+
+

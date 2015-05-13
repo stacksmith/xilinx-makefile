@@ -5,9 +5,7 @@ LED blinker
 
  module top(
   input   clk
-, output  clken
 , output  led
-, input btn
 );
 
 assign clken = 1;

@@ -1,7 +1,6 @@
 #
 # XC3S200 - Digilent S3 board
 #
-NET "btn"  LOC = L14  | IOSTANDARD = LVCMOS33 ;
 NET "led"  LOC = K12  | IOSTANDARD = LVCMOS33 ;
 NET "clk"  LOC = T9  | IOSTANDARD = LVCMOS33 ;  #50MHz
   

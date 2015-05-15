@@ -1,7 +1,7 @@
-DEVICE = xc6slx9-2-ftg256 #XuLA2 lx9  
-BOARD = xula2
-#DEVICE = xc3s200-FT256-4
-#BOARD = DigilentS3
+#DEVICE = xc6slx9-2-ftg256 #XuLA2 lx9  
+#BOARD = xula2
+DEVICE = xc3s200-FT256-4
+BOARD = DigilentS3
 
 IMPACT_CMD_FILE := ../board/$(BOARD)/impact.cmd
 UCF_FILE := ../board/$(BOARD)/top.ucf
@@ -90,4 +90,7 @@ CLEAN_EXTS += .twr .twr_pad.txt .twx .unroutes _usage.xml .xpi _xst.xrpt
 clean:
 	rm -f $(foreach x,$(CLEAN_EXTS),$(TOP)$(x))
 	rm -f par_usage_statistics.html webtalk.log
+	rm -f usage_statistics_webtalk.html
+	rm -f '#Makefile#' '.#Makefile'
+	rm -f _impactbatch.log
 	rm -rf _ngo xlnx_auto_0_xdb  _xmsgs xst

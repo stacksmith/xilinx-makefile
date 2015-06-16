@@ -11,7 +11,7 @@ XST_FILE := ../board/$(BOARD)/top.xst
 TOP_FILE := ../src/top.v
 
 SOURCES := $(strip $(shell \
-	cat $(PRJ_FILE) | grep -oE $$'[^ \t]+[ \t]*$$' | tr -d '"' ))
+	cat $(PRJ_FILE) | grep -oE '[^[:blank:]]+[[:blank:]]*$$' | tr -d '"' ))
 
 TOP := $(strip $(shell \
 	cat $(XST_FILE) | grep "[-]top" | sed s/-top//g ))

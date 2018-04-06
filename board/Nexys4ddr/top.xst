@@ -1,0 +1,11 @@
+set -tmpdir "xst/projnav.tmp"
+set -xsthdpdir "xst"
+set -loop_iteration_limit 1000
+run
+-p xc7a100tcsg324-1
+-ifn ../src/top.prj
+-top top
+-ofn top.ngc
+-opt_mode speed
+-opt_level 1
+-netlist_hierarchy rebuilt

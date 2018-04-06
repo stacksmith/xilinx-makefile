@@ -1,3 +1,5 @@
+#BOARD = Nexys4ddr
+#DEVICE = xc7a100tcsg324-1
 #DEVICE = xc6slx9-2-ftg256 #XuLA2 lx9  
 #BOARD = xula2
 DEVICE = xc3s200-FT256-4
@@ -86,6 +88,7 @@ CLEAN_EXTS := .bgn .bit _bitgen.xwbt .bld .drc .lso _map.map _map.mrp _map.ncd
 CLEAN_EXTS += _map.ngm _map.xrpt .ncd .ngc .ngd _ngdbuild.xrpt .ngr .pad
 CLEAN_EXTS += _pad.csv _pad.txt .par _par.xrpt .pcf .ptwx .srp _summary.xml
 CLEAN_EXTS += .twr .twr_pad.txt .twx .unroutes _usage.xml .xpi _xst.xrpt
+CLEAN_EXTS += .ngc_xst.xrpt
 
 clean:
 	rm -f $(foreach x,$(CLEAN_EXTS),$(TOP)$(x))
